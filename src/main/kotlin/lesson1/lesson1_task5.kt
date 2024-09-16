@@ -2,7 +2,7 @@ package org.example.lesson1
 
 fun main() {
     val seconds: Int = GAGARINS_TIMING * SECONDS_IN_MINUTE
-    var hours: Int = seconds / (SECONDS_IN_MINUTE * SECONDS_IN_MINUTE)
+    val hours: Int = seconds / (SECONDS_IN_MINUTE * SECONDS_IN_MINUTE)
     val ostMinutes: Int = (seconds % (SECONDS_IN_MINUTE * SECONDS_IN_MINUTE)) / SECONDS_IN_MINUTE
     val ostSeconds: Int = seconds % SECONDS_IN_MINUTE
 
