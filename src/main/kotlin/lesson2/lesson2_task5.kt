@@ -5,9 +5,20 @@ fun main() {
     val percentageOfBank: Double = 16.7
 
     println("Введите насколько хотите вложить сумму (целое количество лет)")
-    var yearsOfContribution = readLine()!!.toInt()
-    for (i in 1..yearsOfContribution) {
-        sumContribution = sumContribution + sumContribution * (percentageOfBank / 100)
-        println(String.format("Сумма через $i лет (года) составит %.3f", sumContribution))
+
+    try {
+        var yearsOfContribution = readln().toInt()
+        for (i in 1..yearsOfContribution) {
+            sumContribution = sumContribution + sumContribution * (percentageOfBank / 100)
+        }
+    } catch (e: Exception) {
+        println("Введите корректное число")
+        var yearsOfContribution = readln().toInt()
+        for (i in 1..yearsOfContribution) {
+            sumContribution = sumContribution + sumContribution * (percentageOfBank / 100)
+        }
+    } finally {
+        println(String.format("Сумма составит %.3f", sumContribution))
     }
+
 }
