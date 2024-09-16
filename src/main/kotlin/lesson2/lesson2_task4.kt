@@ -5,8 +5,10 @@ fun main() {
     var irenMineral: Int = 7
     val buffPower: Float = 20f
 
-    var crystalMineralFromBuff: Float = crystalMineral * (buffPower / 100)
-    var irenMineralFromBuff: Float = irenMineral * (buffPower / 100)
+    var crystalMineralFromBuff: Float = crystalMineral * (buffPower / MAX_PERCENTAGE)
+    var irenMineralFromBuff: Float = irenMineral * (buffPower / MAX_PERCENTAGE)
 
     println("${crystalMineralFromBuff.toInt()}\n${irenMineralFromBuff.toInt()}")
 }
+
+const val MAX_PERCENTAGE: Int = 100
