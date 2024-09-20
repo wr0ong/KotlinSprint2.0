@@ -11,4 +11,4 @@ fun main() {
     println("${crystalMineralFromBuff.toInt()}\n${irenMineralFromBuff.toInt()}")
 }
 
-const val MAX_PERCENTAGE: Int = 100
+public const val MAX_PERCENTAGE: Int = 100
