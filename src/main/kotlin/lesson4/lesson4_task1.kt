@@ -1,18 +1,17 @@
 package org.example.lesson4
 
 fun main() {
-    val tablesOnCafe: Int = 13
     var accessTablesToday: Int = 0
     var accessTablesTomorrow: Int = 4
-    var reservedTablesOnToday: Int = tablesOnCafe
-    var reservedTablesTomorrow: Int = tablesOnCafe - accessTablesTomorrow
     var accessToday: Boolean
     var accessTomorrow: Boolean
 
-    if (reservedTablesOnToday < tablesOnCafe) accessToday = true
-    else accessToday = false
-    if (reservedTablesTomorrow < tablesOnCafe) accessTomorrow = true
-    else accessTomorrow = false
+    if (TABLES_IN_CAFE <= TABLES_IN_CAFE - accessTablesToday) accessToday = false
+    else accessToday = true
+    if (TABLES_IN_CAFE <= TABLES_IN_CAFE - accessTablesTomorrow) accessTomorrow = false
+    else accessTomorrow = true
 
     println("Доступность столиков на сегодня: $accessToday\nДоступность столиков на завтра: $accessTomorrow")
 }
+
+const val TABLES_IN_CAFE: Int = 13
