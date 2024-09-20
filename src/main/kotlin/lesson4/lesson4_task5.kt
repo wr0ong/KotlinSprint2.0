@@ -11,9 +11,9 @@ fun main() {
     println("Введите есть ли повреждения корабля (true/false)")
     shipDamage = readLine().toBoolean()
     println("Введите количество экипажа корабля")
-    crewOfShip = readLine()!!.toInt()
+    crewOfShip = readln().toInt()
     println("Введите количество ящиков провизии")
-    boxOfProvision = readLine()!!.toInt()
+    boxOfProvision = readln().toInt()
     println("Введите благоприятная ли погода (true/false)")
     favorableWeather = readLine().toBoolean()
 
