@@ -1,6 +1,7 @@
 package org.example.lesson4
 
 fun main() {
+
     var accessTablesToday: Int = 0
     var accessTablesTomorrow: Int = 4
     var accessToday: Boolean
