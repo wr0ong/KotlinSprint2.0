@@ -21,4 +21,3 @@ fun main() {
 }
 
 const val CONST_FROM_FORMIL: Int = 1
-const val MAX_PERCENTAGE: Int = 100
