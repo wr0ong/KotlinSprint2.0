@@ -1,16 +1,21 @@
 package org.example.lesson4
 
 fun main() {
-    var solarWeather: Boolean = true
-    var openTend: Boolean = true
-    var airHumidity: Int = 20
-    var seasonOfYear: String = "Зима"
-    var favorableConditions: Boolean
+    val isSunny: Boolean = true
+    val isAwningOpen: Boolean = true
+    val airHumidity: Int = 20
+    val seasonOfYear: String = "Зима"
+    val favorableConditions: Boolean
 
-    if ((solarWeather == true) && (openTend == true) && (airHumidity == 20) && (seasonOfYear != "Зима"))
-        favorableConditions = true
+    if ((isSunny == IS_SUNNY_NEED) && (isAwningOpen == IS_AWNING_OPEN_NEED) && (airHumidity == AIR_HUMIDITY_NEED) &&
+        (seasonOfYear != SEASON_OF_YEAR_NOT_NEED)) favorableConditions = true
     else favorableConditions = false
 
     println("Благоприятны ли условия сейчас для роста бобовых? $favorableConditions")
 
 }
+
+const val IS_SUNNY_NEED: Boolean = true
+const val IS_AWNING_OPEN_NEED: Boolean = true
+const val AIR_HUMIDITY_NEED: Int = 20
+const val SEASON_OF_YEAR_NOT_NEED: String = "Зима"
