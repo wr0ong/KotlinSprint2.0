@@ -3,23 +3,23 @@ package org.example.lesson4
 fun main() {
     var exploreShipExpeditionReady: Boolean
 
-    var shipDamage: Boolean
+    var isDamaged: Boolean
     var crewOfShip: Int
     var boxOfProvision: Int
-    var favorableWeather: Boolean
+    var isFavorableWeather: Boolean
 
     println("Введите есть ли повреждения корабля (true/false)")
-    shipDamage = readLine().toBoolean()
+    isDamaged = readln().toBoolean()
     println("Введите количество экипажа корабля")
     crewOfShip = readln().toInt()
     println("Введите количество ящиков провизии")
     boxOfProvision = readln().toInt()
     println("Введите благоприятная ли погода (true/false)")
-    favorableWeather = readLine().toBoolean()
+    isFavorableWeather = readln().toBoolean()
 
-    if (((shipDamage == false) && (crewOfShip >= CREW_OF_SHIP_MIN) && (crewOfShip <= CREW_OF_SHIP_MAX) &&
-                (boxOfProvision > BOX_OF_PROVISION_MIX) && (favorableWeather == true)) || ((shipDamage == true)
-                && (crewOfShip == CREW_OF_SHIP_MAX) && (boxOfProvision >= BOX_OF_PROVISION_MIX) && (favorableWeather == true))
+    if (((!isDamaged) && (crewOfShip >= CREW_OF_SHIP_MIN) && (crewOfShip <= CREW_OF_SHIP_MAX) &&
+                (boxOfProvision > BOX_OF_PROVISION_MIX) && (isFavorableWeather)) || ((isDamaged) &&
+                (crewOfShip == CREW_OF_SHIP_MAX) && (boxOfProvision >= BOX_OF_PROVISION_MIX) && (isFavorableWeather))
     ) {
         exploreShipExpeditionReady = true
     } else exploreShipExpeditionReady = false
