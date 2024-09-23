@@ -1,14 +1,12 @@
 package org.example.lesson5
 
-import kotlin.random.Random
-
 fun main() {
-    var a: Int = Random.nextInt(1, 10)
-    var b: Int = Random.nextInt(1, 10)
+    var summandToVerification1: Int = (1..10).random()
+    var summandToVerification2: Int = (1..10).random()
 
-    println("Сколько будет $a + $b ?")
+    println("Сколько будет $summandToVerification1 + $summandToVerification2 ?")
     val areYouBot = readln().toInt()
 
-    if (areYouBot == (a + b)) println("Добро пожаловать!")
+    if (areYouBot == (summandToVerification1 + summandToVerification2)) println("Добро пожаловать!")
     else println("Доступ запрещен.")
 }
