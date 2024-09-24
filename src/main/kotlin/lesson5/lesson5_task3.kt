@@ -8,25 +8,29 @@ fun main() {
     var playerFirstChoiceNumber: Int
     var playerSecondChoiceNumber: Int
 
-    println("Введите первое число")
+    println("Введите первое число от 1 до 42")
     try {
         playerFirstChoiceNumber = readln().toInt()
-    } catch (e:Exception) {
-        println("Введите целое число!")
+    } catch (e: Exception) {
+        println("Вы ввели неверное число, попробуйте еще раз!")
         playerFirstChoiceNumber = readln().toInt()
     }
-    println("Ввелите второе число")
+
+    println("Введите второе число от 1 до 42")
     try {
         playerSecondChoiceNumber = readln().toInt()
-    } catch (e:Exception) {
-        println("Введите целое число!")
+    } catch (e: Exception) {
+        println("Вы ввели неверное число, попробуйте еще раз!")
         playerSecondChoiceNumber = readln().toInt()
     }
-    if (((playerFirstChoiceNumber == firstWinningNumber)||(playerFirstChoiceNumber == secondWinningNumber)) &&
-        ((playerSecondChoiceNumber == firstWinningNumber)||(playerSecondChoiceNumber == secondWinningNumber)))
+
+    if (((playerFirstChoiceNumber == firstWinningNumber) || (playerFirstChoiceNumber == secondWinningNumber)) &&
+        ((playerSecondChoiceNumber == firstWinningNumber) || (playerSecondChoiceNumber == secondWinningNumber))
+    )
         println("Поздравляем! Вы выиграли главный приз!")
-    else if (((playerFirstChoiceNumber == firstWinningNumber)||(playerFirstChoiceNumber == secondWinningNumber)) ||
-        ((playerSecondChoiceNumber == firstWinningNumber)||(playerSecondChoiceNumber == secondWinningNumber)))
+    else if (((playerFirstChoiceNumber == firstWinningNumber) || (playerFirstChoiceNumber == secondWinningNumber)) ||
+        ((playerSecondChoiceNumber == firstWinningNumber) || (playerSecondChoiceNumber == secondWinningNumber))
+    )
         println("Вы выиграли утешительный приз!")
     else println("Неудача!")
     println("Для победы нужны были $firstWinningNumber и $secondWinningNumber")
