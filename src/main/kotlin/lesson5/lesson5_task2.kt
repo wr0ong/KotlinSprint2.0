@@ -5,14 +5,23 @@ fun main() {
     var secondWinningNumber: Int = (1..42).random()
     if (firstWinningNumber == secondWinningNumber) secondWinningNumber = (1..42).random()
 
-    val playerFirstChoiceNumber: Int
-    val playerSecondChoiceNumber: Int
+    var playerFirstChoiceNumber: Int
+    var playerSecondChoiceNumber: Int
 
     println("Введите первое число")
-    playerFirstChoiceNumber = readln().toInt()
+    try {
+        playerFirstChoiceNumber = readln().toInt()
+    } catch (e:Exception) {
+        println("Введите целое число!")
+        playerFirstChoiceNumber = readln().toInt()
+    }
     println("Ввелите второе число")
-    playerSecondChoiceNumber = readln().toInt()
-
+    try {
+        playerSecondChoiceNumber = readln().toInt()
+    } catch (e:Exception) {
+        println("Введите целое число!")
+        playerSecondChoiceNumber = readln().toInt()
+    }
     if (((playerFirstChoiceNumber == firstWinningNumber)||(playerFirstChoiceNumber == secondWinningNumber)) &&
         ((playerSecondChoiceNumber == firstWinningNumber)||(playerSecondChoiceNumber == secondWinningNumber)))
         println("Поздравляем! Вы выиграли главный приз!")
