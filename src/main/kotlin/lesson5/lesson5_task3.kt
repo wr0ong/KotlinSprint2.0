@@ -29,9 +29,9 @@ fun main() {
     )
         println("Поздравляем! Вы выиграли главный приз!")
     else if (((playerFirstChoiceNumber == firstWinningNumber) || (playerFirstChoiceNumber == secondWinningNumber)) ||
-        ((playerSecondChoiceNumber == firstWinningNumber) || (playerSecondChoiceNumber == secondWinningNumber))
-    )
+        ((playerSecondChoiceNumber == firstWinningNumber) || (playerSecondChoiceNumber == secondWinningNumber)))
         println("Вы выиграли утешительный приз!")
     else println("Неудача!")
+
     println("Для победы нужны были $firstWinningNumber и $secondWinningNumber")
 }
