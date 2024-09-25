@@ -7,7 +7,11 @@ fun main() {
 
     println("Какой ингредиент вас интересует?")
     ingredientOfUser = readln()
-
-    if (arrayOfIngredientsForOmelet.contains(ingredientOfUser)) println("Ингредиент $ingredientOfUser есть в блюде")
-    else println("Такого ингредиента в рецепте нет")
+    for (i in arrayOfIngredientsForOmelet) {
+        if (i == ingredientOfUser) {
+            println("Ингредиент $ingredientOfUser есть в блюде")
+            return
+        }
+    }
+    println("Такого ингридиента в рецепте нет")
 }
