@@ -14,11 +14,14 @@ fun main() {
     userChoice3 = readln().toInt()
 
     val setOfUserChoice: Set<Int> = setOf(userChoice1, userChoice2, userChoice3)
-    if ((setOfUserChoice intersect setOfWinningNumbers).size == 0) println("Вы не угадали ни одного числа")
-    else if ((setOfUserChoice intersect setOfWinningNumbers).size == 1) println("Вы угадали 1 число, получаете утешительный приз")
-    else if ((setOfUserChoice intersect setOfWinningNumbers).size == 2) println("Вы угадали 2 числа и получаете крупный приз!")
-    else println("Вы угадали все числа и выигрываете джекпот!")
+    val sizeOfUserChoice = (setOfUserChoice intersect setOfWinningNumbers).size
 
+    when (sizeOfUserChoice) {
+        0 -> println("Вы не угадали ни одного числа")
+        1 -> println("Вы угадали 1 число, получаете утешительный приз")
+        2 -> println("Вы угадали 2 числа и получаете крупный приз!")
+        3 -> println("Вы угадали все числа и выигрываете джекпот!")
+    }
     println("Сегодня победили числа ${setOfWinningNumbers.elementAt(0)}, ${setOfWinningNumbers.elementAt(1)}," +
             " ${setOfWinningNumbers.elementAt(2)}")
 }
