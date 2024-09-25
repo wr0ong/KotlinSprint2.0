@@ -1,15 +1,11 @@
 package org.example.lesson6
 
 fun main() {
-    val newUserLogin: String
-    val newUserPassword: String
+    val newUserLogin: String = "traktor"
+    val newUserPassword: String = "300"
     var checkOfLogin: String
     var checkOfPassword: String
 
-    println("Введите логин")
-    newUserLogin = readln()
-    println("Введите пароль")
-    newUserPassword = readln()
     do {
         println("Подтвердите логин")
         checkOfLogin = readln()
