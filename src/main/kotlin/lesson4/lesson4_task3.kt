@@ -11,7 +11,6 @@ fun main() {
             (airHumidity == AIR_HUMIDITY_NEED) && (seasonOfYear != SEASON_OF_YEAR_NOT_NEED))
 
     println("Благоприятны ли условия сейчас для роста бобовых? $isFavorableConditions")
-
 }
 
 const val IS_WEATHER_SUNNY: Boolean = true
