@@ -1,16 +1,10 @@
 package org.example.lesson6
 
 fun main() {
-    var needTimeToUser: Int
-    var secondsInTimer: Int
+    val needTimeToUser: Long
 
     println("Введите сколько секунд засечь")
-    needTimeToUser = readln().toInt()
-    secondsInTimer = needTimeToUser
-
-    while (secondsInTimer != 0) {
-        Thread.sleep(1000)
-        secondsInTimer--
-    }
+    needTimeToUser = readln().toLong()
+    Thread.sleep(1000*needTimeToUser)
     println("Прошло $needTimeToUser секунд")
 }
