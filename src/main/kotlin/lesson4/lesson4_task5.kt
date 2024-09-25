@@ -1,12 +1,12 @@
 package org.example.lesson4
 
 fun main() {
-    var exploreShipExpeditionReady: Boolean
+    val isExploreShipExpeditionReady: Boolean
 
-    var isDamaged: Boolean
-    var crewOfShip: Int
-    var boxOfProvision: Int
-    var isFavorableWeatherNow: Boolean
+    val isDamaged: Boolean
+    val crewOfShip: Int
+    val boxOfProvision: Int
+    val isFavorableWeatherNow: Boolean
 
     println("Введите есть ли повреждения корабля (true/false)")
     isDamaged = readln().toBoolean()
@@ -21,10 +21,10 @@ fun main() {
                 (boxOfProvision > BOX_OF_PROVISION_MIX) && (isFavorableWeatherNow == IS_FAVORABLE_WEATHER)) || ((isDamaged == IS_CASE_DAMAGE) &&
                 (crewOfShip == CREW_OF_SHIP_MAX) && (boxOfProvision >= BOX_OF_PROVISION_MIX) && (isFavorableWeatherNow == IS_FAVORABLE_WEATHER))
     ) {
-        exploreShipExpeditionReady = true
-    } else exploreShipExpeditionReady = false
+        isExploreShipExpeditionReady = true
+    } else isExploreShipExpeditionReady = false
 
-    println("Готовность корабля к долгосрочному плаванию: $exploreShipExpeditionReady")
+    println("Готовность корабля к долгосрочному плаванию: $isExploreShipExpeditionReady")
 }
 
 const val CREW_OF_SHIP_MIN: Int = 55
