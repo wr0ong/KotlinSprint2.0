@@ -2,12 +2,12 @@ package org.example.lesson4
 
 fun main() {
 
-    val accessTablesToday = 0
-    val accessTablesTomorrow = 4
-    var accessToday: Boolean = TABLES_IN_CAFE > TABLES_IN_CAFE - accessTablesToday
-    var accessTomorrow: Boolean = TABLES_IN_CAFE > TABLES_IN_CAFE - accessTablesTomorrow
+    val reservedTablesToday = 13
+    val reservedTablesTomorrow = 9
+    val isAccessToday: Boolean = reservedTablesToday < TABLES_IN_CAFE
+    val isAccessTomorrow: Boolean = reservedTablesTomorrow < TABLES_IN_CAFE
 
-    println("Доступность столиков на сегодня: $accessToday\nДоступность столиков на завтра: $accessTomorrow")
+    println("Доступность столиков на сегодня: $isAccessToday\nДоступность столиков на завтра: $isAccessTomorrow")
 }
 
 const val TABLES_IN_CAFE: Int = 13
