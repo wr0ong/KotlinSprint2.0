@@ -7,8 +7,8 @@ fun main() {
 
     println("Введите длину пароля")
     longOfPassword = readln().toInt()
-    while (longOfPassword < 6) {
-        println("Длина пароля должна быть от 6 символов, введите число от 6 и больше")
+    while (longOfPassword < MIN_LENGTH_OF_PASSWORD) {
+        println("Длина пароля должна быть от $MIN_LENGTH_OF_PASSWORD символов, введите число от $MIN_LENGTH_OF_PASSWORD и больше")
         longOfPassword = readln().toInt()
     }
     for (i in 1..longOfPassword) {
@@ -18,3 +18,5 @@ fun main() {
     print("Ваш новый пароль: ")
     mutableListOfPasswords.forEach { print(it) }
 }
+
+const val MIN_LENGTH_OF_PASSWORD = 6
