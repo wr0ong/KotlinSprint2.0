@@ -11,10 +11,11 @@ fun main() {
     }
     println("\nКакой ингредиент вы хотите заменить?")
     ingredientOfUser = readln()
-    if (arrayOfIngredientsForOmelet.contains(ingredientOfUser)) {
+    val indexOfIngredient = arrayOfIngredientsForOmelet.indexOf(ingredientOfUser)
+    if (indexOfIngredient != -1) {
         println("Какой бы вы хотели добавить ингредиент?")
         ingredientToChange = readln()
-        arrayOfIngredientsForOmelet.set(arrayOfIngredientsForOmelet.indexOf(ingredientOfUser), ingredientToChange)
+        arrayOfIngredientsForOmelet.set(indexOfIngredient, ingredientToChange)
         print("Готово! Вы сохранили следующий список: ")
         for (i in arrayOfIngredientsForOmelet) {
             print("$i ")
