@@ -17,7 +17,6 @@ fun main() {
     println("Груз с весом $cargoWeight2 кг и объемом $cargoSize2 соответствует категории 'Average': $average2")
 
 }
-
 const val MIN_CARGO_WEIGHT: Int = 35
 const val MAX_CARGO_WEIGHT: Int = 100
 const val MAX_CARGO_SIZE: Int = 100
