@@ -9,5 +9,4 @@ fun main() {
 
     println("Доступность столиков на сегодня: $isAccessToday\nДоступность столиков на завтра: $isAccessTomorrow")
 }
-
 const val TABLES_IN_CAFE: Int = 13
