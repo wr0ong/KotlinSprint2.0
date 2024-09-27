@@ -6,9 +6,7 @@ fun main() {
 
     println("Сколько порций необходимо?")
     quantityOfPortions = readln().toInt()
-    mutableListOfQuantity[0] = mutableListOfQuantity[0] * quantityOfPortions
-    mutableListOfQuantity[1] = mutableListOfQuantity[1] * quantityOfPortions
-    mutableListOfQuantity[2] = mutableListOfQuantity[2] * quantityOfPortions
+    mutableListOfQuantity.replaceAll { it * quantityOfPortions }
 
     val mutableListOfIngredients: MutableList<String> = mutableListOf(
         "Яиц - ${mutableListOfQuantity[0]}шт.", "Молока - ${mutableListOfQuantity[1]}мл.",
