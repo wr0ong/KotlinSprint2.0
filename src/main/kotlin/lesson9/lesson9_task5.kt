@@ -1,22 +1,20 @@
 package org.example.lesson9
 
 fun main() {
-    val listOfIngredients: MutableList<String> = mutableListOf()
-    var newList: MutableList<String> = mutableListOf()
+    val setOfIngredients: MutableSet<String> = sortedSetOf()
     var readyText: String
     var count = 1
 
     do {
-        if (count > 5) println("Вы ввели какой-то ингредиент несколько раз, введите другой ингредиент")
-
+        if (count > SIZE_OF_SET_OF_INGREDIENTS) println("Вы ввели какой-то ингредиент несколько раз, введите другой ингредиент")
         println("Введите ингредиент №$count")
-        listOfIngredients.add(readln())
-        newList = listOfIngredients.distinct().toMutableList()
+        setOfIngredients.add(readln())
         count++
 
-    } while (newList.size != 5)
-    newList.sort()
+    } while (setOfIngredients.size != SIZE_OF_SET_OF_INGREDIENTS)
 
-    readyText = newList.joinToString().capitalize()
+    readyText = setOfIngredients.joinToString().capitalize()
     println(readyText)
 }
+
+const val SIZE_OF_SET_OF_INGREDIENTS = 5
