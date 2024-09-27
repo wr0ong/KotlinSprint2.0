@@ -1,21 +1,12 @@
 package org.example.lesson7
 
 fun main() {
-    val longOfChain: Int = 2
     val longOfPassword: Int = 6
-    val mutableListOfPassword: MutableList<String> = mutableListOf()
-    var randomString: String
-    var randomInt: String
+    var password: String = ""
 
-    for (i in 1..longOfPassword / longOfChain) {
-        randomString = ('a'..'z').random().toString()
-        randomInt = (1..9).random().toString()
-        mutableListOfPassword.add(randomString)
-        mutableListOfPassword.add(randomInt)
+    for (i in longOfPassword downTo 1) {
+        if (i % 2 == 0) password += ('a'..'z').random()
+        else password += (1..9).random().toString()
     }
-    if (longOfPassword % longOfChain != 0) {
-        randomString = ('a'..'z').random().toString()
-        mutableListOfPassword.add(randomString)
-    }
-    mutableListOfPassword.forEach { print(it) }
+    println(password)
 }
