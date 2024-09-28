@@ -7,12 +7,16 @@ fun main() {
     loginOfUser = readln()
     println("Введите пароль")
     passwordOfUser = readln()
-    checkingOfRegistration(loginOfUser = loginOfUser, passwordOfUser = passwordOfUser)
+
+    if (confirmationOfRegistration(loginOfUser) && confirmationOfRegistration(passwordOfUser) == true)
+        println("Добро пожаловать!")
+    else println("Логин и пароль должны бать от $LENGTH_OF_LOGIN_AND_PASSWORD символов и более")
 }
-fun checkingOfRegistration(loginOfUser: String, passwordOfUser: String) {
-    if ((loginOfUser.length < LENGTH_OF_LOGIN_AND_PASSWORD)||(passwordOfUser.length < LENGTH_OF_LOGIN_AND_PASSWORD))
-        println("Логин и пароль должны быть не менее $LENGTH_OF_LOGIN_AND_PASSWORD символов")
-    else println("Добро пожаловать!")
+
+fun confirmationOfRegistration(dataOfUser: String): Boolean {
+    if (dataOfUser.length < LENGTH_OF_LOGIN_AND_PASSWORD)
+        return false
+    else return true
 }
 
 const val LENGTH_OF_LOGIN_AND_PASSWORD = 4
