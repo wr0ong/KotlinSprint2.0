@@ -1,34 +1,52 @@
 package org.example.lesson11
 
 class Forum(
-    val mapOfUsers: MutableMap<Int, String>,
-    val messageOfUser: String,
+    val mapOfUsers: MutableMap<String, Int> = mutableMapOf(),
+    var messageOfUser: String = "",
 ) {
-    fun createNewUser(userName: String) : String {
+    fun createNewUser(userName: String) {
         val newId: Int = (11111111..99999999).random()
-        mapOfUsers.put(newId, userName)
-        return userName
+        mapOfUsers.put(userName, newId)
     }
-    fun createNewMessage (userId: Int) {
+
+    fun createNewMessage(userId: Int): String {
         val newMessage: String
-        if (userId in mapOfUsers.keys) {
+        if (userId in mapOfUsers.values) {
+            println("${mapOfUsers.entries.find { it.value == userId }?.key}, введите сообщение")
             newMessage = readln()
+            messageOfUser = newMessage
         }
+        return messageOfUser
     }
-    fun printThread() {
-        for ((key,value) in mapOfUsers) {
-            println("$value: ${createNewMessage(key)}" )
+
+    fun printThread(userName: String) {
+        if (userName in mapOfUsers.keys) {
+            println("${userName}: $messageOfUser")
         }
     }
 }
 
-class MemberOfForum (
-    val userId: Int,
-    val userName: String,
-)
+fun main() {
+    val firstForum: Forum = Forum()
+    firstForum.createNewUser("Bool_from_Hell")
+    firstForum.createNewUser("Ivan")
+    try {
+        firstForum.createNewMessage(firstForum.mapOfUsers.getValue("Bool_from_Hell"))
+    } catch (e: NoSuchElementException) {
+        println("пользователя не существует")
+    }
+    try {
+        firstForum.createNewMessage(firstForum.mapOfUsers.getValue("Ignat"))
+    } catch (e: NoSuchElementException) {
+        println("пользователя не существует")
+    }
+    try {
+        firstForum.createNewMessage(firstForum.mapOfUsers.getValue("Ivan"))
+    } catch (e: NoSuchElementException) {
+        println("пользователя не существует")
+    }
 
-class MessageOfForum (
-    val authorId: String,
-    val message: String,
-)
-
+    firstForum.printThread("Bool_from_Hell")
+    firstForum.printThread("Ivan")
+    firstForum.printThread("Ignat")
+}
