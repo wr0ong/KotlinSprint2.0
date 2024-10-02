@@ -5,7 +5,7 @@ class Forum(
     var messageOfUser: String = "",
 ) {
     fun createNewUser(userName: String) {
-        val newId: Int = (11111111..99999999).random()
+        var newId: Int = 11111111 + mapOfUsers.size
         mapOfUsers.put(userName, newId)
     }
 
@@ -49,4 +49,7 @@ fun main() {
     firstForum.printThread("Bool_from_Hell")
     firstForum.printThread("Ivan")
     firstForum.printThread("Ignat")
+
+    println(firstForum.mapOfUsers.keys)
+    println(firstForum.mapOfUsers.values)
 }
