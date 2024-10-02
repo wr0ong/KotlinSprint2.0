@@ -3,12 +3,12 @@ package org.example.lesson11
 data class CategoryOfRecipe(
     val nameOfCategory: String,
     val imageOfCategory: String,
-    val recipes: String,
+    val recipes: Recipe,
 )
 data class Recipe(
     val nameOfDish: String,
     val quantityOfPortion: Int,
-    val listOfRecipe: List<String>,
+    val listOfIngredients: List<Ingredient>,
     val cookingMethod: String,
 )
 data class Ingredient(
