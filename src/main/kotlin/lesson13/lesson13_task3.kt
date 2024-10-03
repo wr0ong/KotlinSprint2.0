@@ -8,6 +8,10 @@ class PhoneDirectory3(
     fun printInstance() {
         println("-Имя: $name\n-Номер: $phoneNumber\n-Компания: ${company ?: "<не указано>"}")
     }
+
+    fun printCompany() {
+        println("-Компания: ${company ?: "<не указано>"}")
+    }
 }
 
 fun main() {
@@ -26,5 +30,5 @@ fun main() {
     mutableListOfContacts.add(contact5)
 
     mutableListOfContacts.filter { it.company != null }
-        .forEach { println(it.company) }
+        .forEach { it.printCompany() }
 }
