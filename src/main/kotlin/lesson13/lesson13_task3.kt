@@ -3,10 +3,10 @@ package org.example.lesson13
 class PhoneDirectory3(
     val name: String,
     val phoneNumber: Long,
-    val company: String? = null ?: "<не указано>"
+    val company: String? = null
 ) {
     fun printInstance() {
-        println("-Имя: $name\n-Номер: $phoneNumber\n-Компания: $company")
+        println("-Имя: $name\n-Номер: $phoneNumber\n-Компания: ${company ?: "<не указано>"}")
     }
 }
 
@@ -25,6 +25,6 @@ fun main() {
     mutableListOfContacts.add(contact4)
     mutableListOfContacts.add(contact5)
 
-    mutableListOfContacts.filter{it.company != "<не указано>"}
-        .forEach{ println(it.company) }
+    mutableListOfContacts.filter { it.company != null }
+        .forEach { println(it.company) }
 }
