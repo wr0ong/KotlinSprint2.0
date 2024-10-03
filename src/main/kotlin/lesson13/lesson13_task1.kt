@@ -5,9 +5,6 @@ class PhoneDirectory(
     val phoneNumber: Long,
     var company: String?
 ) {
-    init {
-        if (company == null) company = "поле Company не заполнено"
-    }
 }
 
 fun main() {
@@ -29,5 +26,5 @@ fun main() {
         company = company
     )
 
-    println("${firstOfPhoneDirectory.name},\n${firstOfPhoneDirectory.phoneNumber},\n${firstOfPhoneDirectory.company}")
+    println("${firstOfPhoneDirectory.name}\n${firstOfPhoneDirectory.phoneNumber}\n${firstOfPhoneDirectory.company ?: "Поле company не заполнено"}")
 }
