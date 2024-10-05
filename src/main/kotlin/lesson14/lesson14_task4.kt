@@ -1,5 +1,7 @@
 package org.example.lesson14
 
+import kotlin.math.sqrt
+
 abstract class CelestialsBodies(
     val isPresenceOfAtmosphere: Boolean,
     val isSuitableToBoarding: Boolean,
@@ -7,7 +9,7 @@ abstract class CelestialsBodies(
     val radius: Double,
     val inclinationOfOrbit: Double,
     val mass: ULong,
-    ) {
+) {
 }
 
 open class Planets(
@@ -18,13 +20,13 @@ open class Planets(
     inclinationOfOrbit: Double,
     mass: ULong,
     val sputniksOfPlanet: MutableList<Sputniks> = mutableListOf()
-    ): CelestialsBodies(isPresenceOfAtmosphere, isSuitableToBoarding,name, radius, inclinationOfOrbit,mass){
-        fun outputSputniks(){
-            println(name)
-            sputniksOfPlanet.groupBy { it.sputniksOfPlanet }
-                .forEach{ it.value.forEach{ println("   ${it.name}") } }
-        }
+) : CelestialsBodies(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass) {
+    fun outputSputniks() {
+        println(name)
+        sputniksOfPlanet.groupBy { it.sputniksOfPlanet }
+            .forEach { it.value.forEach { println("   Название - ${it.name}, спутник искусственный - ${it.isArtificial}") } }
     }
+}
 
 class Sputniks(
     isPresenceOfAtmosphere: Boolean,
@@ -36,7 +38,7 @@ class Sputniks(
     val isArtificial: Boolean,
     val apogee: Int,
     val perigee: Int,
-) : Planets (isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass) {
+) : Planets(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass) {
 }
 
 fun main() {
@@ -51,7 +53,7 @@ fun main() {
         405059,
         367047,
     )
-    val planet1: Planets = Planets (
+    val planet1: Planets = Planets(
         true,
         true,
         "Earth",
