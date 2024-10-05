@@ -17,7 +17,7 @@ fun main() {
     println("Введите номер телефона")
     phoneNumber = readln().toLong()
     println("Введите компанию")
-    company = readlnOrNull()?:"Поле company не заполнено"
+    company = readlnOrNull()
     if (company == "") company = null
 
     val firstOfPhoneDirectory: PhoneDirectory = PhoneDirectory(
