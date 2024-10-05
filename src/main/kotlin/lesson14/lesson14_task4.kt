@@ -1,7 +1,5 @@
 package org.example.lesson14
 
-import kotlin.math.sqrt
-
 abstract class CelestialsBodies(
     val isPresenceOfAtmosphere: Boolean,
     val isSuitableToBoarding: Boolean,
