@@ -21,7 +21,9 @@ fun main() {
 
     println("Хотите добавить контакт в книгу?")
     addToBook = readln()
+
     if (addToBook == "да") {
+
         do {
             println("Введите имя контакта")
             name = readln()
@@ -36,6 +38,7 @@ fun main() {
             println("Хотите добавить еще контакт?")
             addToBook = readln()
         } while (addToBook == "да")
+
         bookOfContacts.forEach { println("\n${it.name}\n${it.phoneNumber}\n${it.company}\n") }
     }
 }
