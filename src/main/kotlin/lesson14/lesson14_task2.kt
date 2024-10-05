@@ -17,10 +17,10 @@ open class LinerShip2(
         println("Корабль $name начал движение!")
     }
 
-    fun startLoadingTheShip(){
+    open fun startLoadingTheShip(){
         println("У $name выдвинут горизонтальный трап со шкуфта, можно начать погрузку...\n")
     }
-    fun stopLoadingTheShip(){
+    open fun stopLoadingTheShip(){
         println("Горизонтальный трап в исходном положении, погрузка судна $name завершена\n")
     }
 }
@@ -31,11 +31,11 @@ class CargoShip2(
     carrying: Int = 2000,
     capacity: Int = 100,
     isSplittingIce: Boolean = false,
-) : LinerShip(name, speed, carrying, capacity, isSplittingIce) {
-    fun startLoadingTheShip(){
+) : LinerShip2(name, speed, carrying, capacity, isSplittingIce) {
+    override fun startLoadingTheShip(){
         println("У корабля $name погрузочный кран активирован, можно начать погрузку...\n")
     }
-    fun stopLoadingTheShip(){
+    override fun stopLoadingTheShip(){
         println("Погрузочный кран в исходном положении, погрузка судна $name завершена\n")
     }
 }
@@ -46,11 +46,11 @@ class IcebreakerShip2(
     carrying: Int = 650,
     capacity: Int = 90,
     isSplittingIce: Boolean = true
-) : LinerShip(name, speed, carrying, capacity, isSplittingIce) {
-    fun startLoadingTheShip(){
+) : LinerShip2(name, speed, carrying, capacity, isSplittingIce) {
+    override fun startLoadingTheShip(){
         println("У корабля $name ворота со стороны кормы открыты, можно начать погрузку...\n")
     }
-    fun stopLoadingTheShip(){
+    override fun stopLoadingTheShip(){
         println("Ворота закрыты, погрузка судна $name завершена\n")
     }
 }
