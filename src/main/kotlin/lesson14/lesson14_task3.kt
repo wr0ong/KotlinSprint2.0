@@ -1,21 +1,22 @@
 package org.example.lesson14
 
+import kotlin.math.PI
 import kotlin.math.pow
 
-abstract class Figure(val color: List<String> = listOf("Белый", "Черный")) {
+abstract class Figure(val color: List<String> = listOf(FIRST_COLOR_OF_FIGURES, SECOND_COLOR_OF_FIGURES)) {
     abstract fun calculateArea(): Double
     abstract fun calculatePerimeter(): Double
 }
 
 class Circle(val radius: Double, color: List<String>) : Figure(color) {
     override fun calculateArea(): Double {
-        val areaOfCircle = NUMBER_PI * radius.pow(2.0)
+        val areaOfCircle = PI * radius.pow(2.0)
         println(String.format("Радиус круга = %.3f", areaOfCircle))
         return areaOfCircle
     }
 
     override fun calculatePerimeter(): Double {
-        val perimeterOfCircle = NUMBER_PI * radius * 2
+        val perimeterOfCircle = PI * radius * 2
         println(String.format("Периметр круга = %.3f", perimeterOfCircle))
         return perimeterOfCircle
     }
@@ -38,21 +39,21 @@ class Rectangle(val length: Double, val height: Double, color: List<String>) : F
 fun main() {
     val circle1: Circle = Circle(
         radius = 5.6,
-        color = listOf("Белый")
+        color = listOf(FIRST_COLOR_OF_FIGURES)
     )
     val circle2: Circle = Circle(
         radius = 8.5,
-        color = listOf("Черный")
+        color = listOf(SECOND_COLOR_OF_FIGURES)
     )
     val rectangle1: Rectangle = Rectangle(
         length = 2.2,
         height = 3.8,
-        color = listOf("Черный")
+        color = listOf(SECOND_COLOR_OF_FIGURES)
     )
     val rectangle2: Rectangle = Rectangle(
         length = 2.2,
         height = 3.8,
-        color = listOf("Белый")
+        color = listOf(FIRST_COLOR_OF_FIGURES)
     )
     val circle3: Circle = Circle(
         radius = 2.5,
@@ -73,4 +74,5 @@ fun main() {
 
 }
 
-const val NUMBER_PI: Double = 3.141592
+const val FIRST_COLOR_OF_FIGURES = "Белый"
+const val SECOND_COLOR_OF_FIGURES = "Черный"
