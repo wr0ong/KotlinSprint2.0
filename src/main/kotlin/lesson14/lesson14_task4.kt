@@ -7,26 +7,25 @@ abstract class CelestialsBodies(
     val radius: Double,
     val inclinationOfOrbit: Double,
     val mass: ULong,
-) {
-}
+)
 
-open class Planets(
+open class Planet(
     isPresenceOfAtmosphere: Boolean,
     isSuitableToBoarding: Boolean,
     name: String,
     radius: Double,
     inclinationOfOrbit: Double,
     mass: ULong,
-    val sputniksOfPlanet: MutableList<Sputniks> = mutableListOf()
+    open val sputnikOfPlanet: MutableList<Sputnik> = mutableListOf(),
 ) : CelestialsBodies(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass) {
     fun outputSputniks() {
         println(name)
-        sputniksOfPlanet.groupBy { it.sputniksOfPlanet }
+        sputnikOfPlanet.groupBy { it.sputnikOfPlanet }
             .forEach { it.value.forEach { println("   Название - ${it.name}, спутник искусственный - ${it.isArtificial}") } }
     }
 }
 
-class Sputniks(
+class Sputnik(
     isPresenceOfAtmosphere: Boolean,
     isSuitableToBoarding: Boolean,
     name: String,
@@ -36,11 +35,11 @@ class Sputniks(
     val isArtificial: Boolean,
     val apogee: Int,
     val perigee: Int,
-) : Planets(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass) {
-}
+    override val sputnikOfPlanet: MutableList<Sputnik> = mutableListOf()
+) : Planet(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass)
 
 fun main() {
-    val sputnik1: Sputniks = Sputniks(
+    val sputnik1: Sputnik = Sputnik(
         false,
         false,
         "Moon",
@@ -51,7 +50,7 @@ fun main() {
         405059,
         367047,
     )
-    val planet1: Planets = Planets(
+    val planet1: Planet = Planet(
         true,
         true,
         "Earth",
@@ -59,7 +58,7 @@ fun main() {
         0.0,
         59800000000000000u,
     )
-    val sputnik2: Sputniks = Sputniks(
+    val sputnik2: Sputnik = Sputnik(
         false,
         false,
         "Artificial sputnik",
@@ -70,11 +69,10 @@ fun main() {
         8495,
         7104,
     )
-    planet1.sputniksOfPlanet.add(sputnik1)
-    planet1.sputniksOfPlanet.add(sputnik2)
+    planet1.sputnikOfPlanet.add(sputnik1)
+    planet1.sputnikOfPlanet.add(sputnik2)
 
     planet1.outputSputniks()
 }
-
 
 const val PERMANENT_OF_GRAVITY: Double = 6.67 * 0.00000000001
