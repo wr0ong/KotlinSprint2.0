@@ -62,12 +62,12 @@ fun main() {
     val listOfFigure = listOf(circle1, circle2, rectangle1, rectangle2)
 
     var sumOfWhite = 0.0
-    listOfFigure.filter { it.color == "Белый" }
+    listOfFigure.filter { it.color == FIRST_COLOR_OF_FIGURES }
         .forEach { sumOfWhite += it.calculateArea() }
     println(String.format("Сумма площадей белых %.3f", sumOfWhite))
 
     var sumOfBlacks = 0.0
-    listOfFigure.filter { it.color == "Черный" }
+    listOfFigure.filter { it.color == SECOND_COLOR_OF_FIGURES }
         .forEach { sumOfBlacks += it.calculatePerimeter() }
     println(String.format("Сумма периметров черных %.3f", sumOfBlacks))
 
