@@ -3,12 +3,12 @@ package org.example.lesson14
 import kotlin.math.PI
 import kotlin.math.pow
 
-abstract class Figure(val color: List<String> = listOf(FIRST_COLOR_OF_FIGURES, SECOND_COLOR_OF_FIGURES)) {
+abstract class Figure(val color: String) {
     abstract fun calculateArea(): Double
     abstract fun calculatePerimeter(): Double
 }
 
-class Circle(val radius: Double, color: List<String>) : Figure(color) {
+class Circle(val radius: Double, color: String) : Figure(color) {
     override fun calculateArea(): Double {
         val areaOfCircle = PI * radius.pow(2.0)
         println(String.format("Радиус круга = %.3f", areaOfCircle))
@@ -22,7 +22,7 @@ class Circle(val radius: Double, color: List<String>) : Figure(color) {
     }
 }
 
-class Rectangle(val length: Double, val height: Double, color: List<String>) : Figure(color) {
+class Rectangle(val length: Double, val height: Double, color: String) : Figure(color) {
     override fun calculateArea(): Double {
         val areaOfRectangle = length * height
         println(String.format("Площадь прямоугольника = %.3f", areaOfRectangle))
@@ -39,35 +39,35 @@ class Rectangle(val length: Double, val height: Double, color: List<String>) : F
 fun main() {
     val circle1: Circle = Circle(
         radius = 5.6,
-        color = listOf(FIRST_COLOR_OF_FIGURES)
+        color = FIRST_COLOR_OF_FIGURES
     )
     val circle2: Circle = Circle(
         radius = 8.5,
-        color = listOf(SECOND_COLOR_OF_FIGURES)
+        color = SECOND_COLOR_OF_FIGURES
     )
     val rectangle1: Rectangle = Rectangle(
         length = 2.2,
         height = 3.8,
-        color = listOf(SECOND_COLOR_OF_FIGURES)
+        color = SECOND_COLOR_OF_FIGURES
     )
     val rectangle2: Rectangle = Rectangle(
         length = 2.2,
         height = 3.8,
-        color = listOf(FIRST_COLOR_OF_FIGURES)
+        color = FIRST_COLOR_OF_FIGURES
     )
     val circle3: Circle = Circle(
         radius = 2.5,
-        color = listOf("Зеленый")
+        color = "Зеленый"
     )
     val listOfFigure = listOf(circle1, circle2, rectangle1, rectangle2)
 
     var sumOfWhite = 0.0
-    listOfFigure.filter { it.color == listOf("Белый") }
+    listOfFigure.filter { it.color == "Белый" }
         .forEach { sumOfWhite += it.calculateArea() }
     println(String.format("Сумма площадей белых %.3f", sumOfWhite))
 
     var sumOfBlacks = 0.0
-    listOfFigure.filter { it.color == listOf("Черный") }
+    listOfFigure.filter { it.color == "Черный" }
         .forEach { sumOfBlacks += it.calculatePerimeter() }
     println(String.format("Сумма периметров черных %.3f", sumOfBlacks))
 
