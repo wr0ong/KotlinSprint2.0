@@ -1,20 +1,23 @@
 package org.example.lesson14
 
-open class Chat(val listOfUsers: MutableList<String> = mutableListOf()) {
-    var userName: String = ""
+open class Chat(open val listOfUsers: MutableList<String> = mutableListOf()) {
+    open var userName: String = ""
     val listOfMessage: MutableList<Message> = mutableListOf()
     val listOfChildMessage: MutableList<ChildMessage> = mutableListOf()
+
     //val listOfUsers: MutableList<String> = mutableListOf()
-    open fun addMessage() {}
+    open fun addMessage() {
+
+    }
 
     open fun addThreadMessage() {}
 
     fun printChat() {
-        listOfMessage.groupBy{ it.message}
-            .forEach{ println("$userName: ${it.key}\n")
-            listOfChildMessage.forEach{ println("       $userName: ${it.childMessage}") }
+        listOfMessage.groupBy { it.message }
+            .forEach {
+                println("$userName: ${it.key}\n")
+                listOfChildMessage.forEach { println("       $userName: ${it.childMessage}") }
             }
-
     }
 
     fun addUser() {
@@ -25,27 +28,23 @@ open class Chat(val listOfUsers: MutableList<String> = mutableListOf()) {
     }
 }
 
-open class Message(listOfUsers: MutableList<String>,
-                   val mutableListOfId: MutableList<Int> = mutableListOf()) : Chat(listOfUsers) {
+open class Message(
+    val mutableListOfId: MutableList<Int> = mutableListOf()
+) {
     var id: Int = 0
     var message: String = ""
-    override fun addMessage() {
-        println("Введите имя пользователя для проверки")
-       userName = readln()
-        if (listOfUsers.contains(userName)) {
-            println("Введите сообщение")
-            message = readln()
-            id += listOfMessage.size
-            mutableListOfId.add(id)
-            listOfMessage.add(this)
-            listOfMessage.forEach { println(it.message) }
-            println("id вашего сообщения: $id")
-        } else println("Пользлователь не зарегестрирован, невозможно добавить сообщение в чат")
+    fun addMessage() {
+        println("Введите сообщение")
+        message = readln()
+        id += mutableListOfId.size
+        mutableListOfId.add(id)
+        println("id вашего сообщения: $id")
     }
-
 }
-class ChildMessage(listOfUsers: MutableList<String>,
-                   mutableListOfId: MutableList<Int>) : Message(listOfUsers, mutableListOfId) {
+
+class ChildMessage(
+    mutableListOfId: MutableList<Int>
+) : Message(mutableListOfId) {
     var childId = 0
     var childMessage: String = ""
     override fun addThreadMessage() {
