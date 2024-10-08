@@ -20,7 +20,7 @@ open class Planet(
 ) : CelestialsBodies(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass) {
     fun outputSputniks() {
         println(name)
-        sputnikOfPlanet.groupBy { it.sputnikOfPlanet }
+        sputnikOfPlanet.groupBy { it.name }
             .forEach { it.value.forEach { println("   Название - ${it.name}, спутник искусственный - ${it.isArtificial}") } }
     }
 }
@@ -35,8 +35,7 @@ class Sputnik(
     val isArtificial: Boolean,
     val apogee: Int,
     val perigee: Int,
-    override val sputnikOfPlanet: MutableList<Sputnik> = mutableListOf()
-) : Planet(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass)
+) : CelestialsBodies(isPresenceOfAtmosphere, isSuitableToBoarding, name, radius, inclinationOfOrbit, mass)
 
 fun main() {
     val sputnik1: Sputnik = Sputnik(
@@ -50,14 +49,6 @@ fun main() {
         405059,
         367047,
     )
-    val planet1: Planet = Planet(
-        true,
-        true,
-        "Earth",
-        6357.0,
-        0.0,
-        59800000000000000u,
-    )
     val sputnik2: Sputnik = Sputnik(
         false,
         false,
@@ -69,8 +60,15 @@ fun main() {
         8495,
         7104,
     )
-    planet1.sputnikOfPlanet.add(sputnik1)
-    planet1.sputnikOfPlanet.add(sputnik2)
+    val planet1: Planet = Planet(
+        true,
+        true,
+        "Earth",
+        6357.0,
+        0.0,
+        59800000000000000u,
+        sputnikOfPlanet = mutableListOf(sputnik1, sputnik2)
+    )
 
     planet1.outputSputniks()
 }
