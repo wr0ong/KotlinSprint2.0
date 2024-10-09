@@ -1,21 +1,26 @@
 package org.example.lesson14
 
-open class Chat(open val listOfUsers: MutableList<String> = mutableListOf()) {
+open class Chat() {
+    open val listOfUsers: MutableList<String> = mutableListOf()
     open var userName: String = ""
     val listOfMessage: MutableList<Message> = mutableListOf()
     val listOfChildMessage: MutableList<ChildMessage> = mutableListOf()
 
-    //val listOfUsers: MutableList<String> = mutableListOf()
-    open fun addMessage() {
-
+    fun addMessage(text: Message, userName: String) {
+        if (userName in listOfUsers)
+            listOfMessage.add(text)
     }
 
-    open fun addThreadMessage() {}
+    fun addThreadMessage(text: ChildMessage, userName: String, messageId: Int?) {
+        if ((userName in listOfUsers) && (messageId != null)) {
+            listOfChildMessage.add(text)
+        }
+    }
 
     fun printChat() {
         listOfMessage.groupBy { it.message }
             .forEach {
-                println("$userName: ${it.key}\n")
+                println("$userName : ${it.key}\n")
                 listOfChildMessage.forEach { println("       $userName: ${it.childMessage}") }
             }
     }
@@ -31,9 +36,9 @@ open class Chat(open val listOfUsers: MutableList<String> = mutableListOf()) {
 open class Message(
     val mutableListOfId: MutableList<Int> = mutableListOf()
 ) {
-    var id: Int = 0
+    var id: Int = 1
     var message: String = ""
-    fun addMessage() {
+    fun createMessage() {
         println("Введите сообщение")
         message = readln()
         id += mutableListOfId.size
@@ -42,23 +47,16 @@ open class Message(
     }
 }
 
-class ChildMessage(
-    mutableListOfId: MutableList<Int>
-) : Message(mutableListOfId) {
-    var childId = 0
+class ChildMessage(mutableListOfId: MutableList<Int>) : Message(mutableListOfId) {
     var childMessage: String = ""
-    override fun addThreadMessage() {
+    fun createThreadMessage() {
         println(mutableListOfId)
-        println(listOfUsers)
         println("Введите ID сообщения для обсуждения")
         id = readln().toInt()
-        println("Введите имя пользователя для проверки")
-        userName = readln()
-        if ((mutableListOfId.contains(id)) && (listOfUsers.contains(userName))) {
+        if ((mutableListOfId.contains(id))) {
             println("Введите сообщение обсуждения")
             childMessage = readln()
-            childId += listOfChildMessage.size
-        } else println("Нельзя добавить сообщение для обсуждения")
+        } else println("Нельзя добавить сообщение для обсуждения, указан неверный ID")
     }
 
 }
@@ -69,14 +67,34 @@ fun main() {
     chat.addUser()
     println(chat.listOfUsers)
 
-    val message: Message = Message(chat.listOfUsers)
-    message.addMessage()
-    message.addMessage()
+    var isAddMessage: Boolean
+    val name: String
+    println("Введите имя пользователя для проверки")
+    name = readln()
+    if (name in chat.listOfUsers) {
+        println("$name, хотите добавить сообщение в чат?")
+        isAddMessage = readln().toBoolean()
+        while (isAddMessage == true) {
+            var message: Message = Message()
+            message.createMessage()
+            chat.addMessage(message, name)
+            println("$name, хотите добавить сообщение?")
+            isAddMessage = readln().toBoolean()
+        }
+        var isAddChildMessage: Boolean
+        println("Хотите добавить сообщение для обсуждения?")
+        isAddChildMessage = readln().toBoolean()
+        while (isAddChildMessage) {
+            var id: Int?
+            println("Введите ID сообщения для начала обсуждения")
+            id = readln().toInt()
+            var childMessage: ChildMessage = ChildMessage(mutableListOfId = mutableListOf(id))
+            childMessage.createMessage()
+            chat.addThreadMessage(childMessage, name,id)
+            println("$name, хотите добавить сообщение для обсуждения?")
+            isAddChildMessage = readln().toBoolean()
+        }
+    } else println("Неверное имя пользователя, невозможно добавить сообщение")
 
-    val childMessage: ChildMessage = ChildMessage(chat.listOfUsers, message.mutableListOfId)
-    childMessage.addThreadMessage()
-    childMessage.addThreadMessage()
-
-    println(chat.listOfMessage)
     chat.printChat()
 }
