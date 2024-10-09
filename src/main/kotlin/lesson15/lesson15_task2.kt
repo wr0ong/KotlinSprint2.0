@@ -1,31 +1,14 @@
 package org.example.lesson15
 
-import org.example.lesson11.Ingredient
-
 abstract class WeatherStationStats() {
-    val mListOfTemperature: MutableList<Temperature> = mutableListOf()
-    val mListOfAmount: MutableList<PrecipitationAmount> = mutableListOf()
+    val mListOfTemperature: MutableList<Int> = mutableListOf()
+    val mListOfAmount: MutableList<Double> = mutableListOf()
 }
 
 open class Temperature() : WeatherStationStats() {
-    val temperature: Int = 0
-    init {
-        mListOfTemperature.add(temperature)
-    }
-}
-
-private fun <E> MutableList<E>.add(temperature: Int) {
 }
 
 open class PrecipitationAmount() : WeatherStationStats() {
-    val amount: Double = 0.0
-    init {
-        mListOfAmount.add(amount)
-    }
-}
-
-private fun <E> MutableList<E>.add(amount: Double) {
-
 }
 
 class WeatherServer() : WeatherStationStats() {
@@ -33,21 +16,19 @@ class WeatherServer() : WeatherStationStats() {
         val result = readln()
         val digit = result.partition { it.isDigit() }
         if (digit.second == "") {
-            result.toInt()
-            mListOfTemperature.add(result)
+            mListOfTemperature.add(result.toInt())
         }
-        else mListOfAmount.add(result)
+        else {
+            result.toDouble()
+            mListOfAmount.add(result.toDouble())}
     }
 }
 
-private fun <E> MutableList<E>.add(element: String) {
-
-}
-
 fun main(){
-    val a = WeatherServer()
-    a.getInfo()
+    val weatherInfo1 = WeatherServer()
+    weatherInfo1.getInfo()
+    weatherInfo1.getInfo()
 
-    println(a.mListOfAmount)
-    println(a.mListOfTemperature)
+    weatherInfo1.mListOfAmount.forEach { println("Значение давления $it") }
+    weatherInfo1.mListOfTemperature.forEach { println("Значение температуры $it") }
 }
