@@ -6,9 +6,10 @@ open class Chat() {
     val listOfMessage: MutableList<Message> = mutableListOf()
     val listOfChildMessage: MutableList<ChildMessage> = mutableListOf()
 
-    fun addMessage(text: Message, userName: String) {
-        if (userName in listOfUsers)
-            listOfMessage.add(text)
+    fun addMessage(text: Message, userName: String, id: Int) {
+        if (userName in listOfUsers) {
+            listOfMessage.add(id, text)
+        }
     }
 
     fun addThreadMessage(text: ChildMessage, userName: String, messageId: Int?) {
@@ -17,11 +18,11 @@ open class Chat() {
         }
     }
 
-    fun printChat() {
+    fun printChat(name: String) {
         listOfMessage.groupBy { it.message }
             .forEach {
-                println("$userName : ${it.key}\n")
-                listOfChildMessage.forEach { println("       $userName: ${it.childMessage}") }
+                println("$name: ${it.key}")
+                listOfChildMessage.forEach { println("\t$name: ${it.childMessage}") }
             }
     }
 
@@ -34,31 +35,29 @@ open class Chat() {
 }
 
 open class Message(
-    val mutableListOfId: MutableList<Int> = mutableListOf()
+    open val mutableListOfId: MutableList<Int> = mutableListOf(),
+    var id: Int = 0,
 ) {
-    var id: Int = 1
     var message: String = ""
     fun createMessage() {
-        println("Введите сообщение")
-        message = readln()
         id += mutableListOfId.size
         mutableListOfId.add(id)
+        println("Введите сообщение")
+        message = readln()
         println("id вашего сообщения: $id")
+        println(mutableListOfId)
     }
 }
 
-class ChildMessage(mutableListOfId: MutableList<Int>) : Message(mutableListOfId) {
+class ChildMessage(mutableListOfId: MutableList<Int>, id: Int) : Message(mutableListOfId, id) {
     var childMessage: String = ""
+    var checkId = id
     fun createThreadMessage() {
-        println(mutableListOfId)
-        println("Введите ID сообщения для обсуждения")
-        id = readln().toInt()
-        if ((mutableListOfId.contains(id))) {
+        if ((mutableListOfId.contains(checkId))) {
             println("Введите сообщение обсуждения")
             childMessage = readln()
         } else println("Нельзя добавить сообщение для обсуждения, указан неверный ID")
     }
-
 }
 
 fun main() {
@@ -67,34 +66,30 @@ fun main() {
     chat.addUser()
     println(chat.listOfUsers)
 
-    var isAddMessage: Boolean
-    val name: String
     println("Введите имя пользователя для проверки")
-    name = readln()
+    val name: String = readln()
     if (name in chat.listOfUsers) {
-        println("$name, хотите добавить сообщение в чат?")
-        isAddMessage = readln().toBoolean()
-        while (isAddMessage == true) {
-            var message: Message = Message()
-            message.createMessage()
-            chat.addMessage(message, name)
-            println("$name, хотите добавить сообщение?")
-            isAddMessage = readln().toBoolean()
-        }
+        println("$name, добавьте сообщение в чат")
+        val message: Message = Message()
+        message.createMessage()
+        chat.addMessage(message, name, message.id)
+
         var isAddChildMessage: Boolean
         println("Хотите добавить сообщение для обсуждения?")
         isAddChildMessage = readln().toBoolean()
+
         while (isAddChildMessage) {
             var id: Int?
             println("Введите ID сообщения для начала обсуждения")
             id = readln().toInt()
-            var childMessage: ChildMessage = ChildMessage(mutableListOfId = mutableListOf(id))
-            childMessage.createMessage()
-            chat.addThreadMessage(childMessage, name,id)
+            val childMessage: ChildMessage = ChildMessage(message.mutableListOfId, id)
+            childMessage.createThreadMessage()
+            if (message.mutableListOfId.contains(id)) chat.addThreadMessage(childMessage, name, id)
             println("$name, хотите добавить сообщение для обсуждения?")
             isAddChildMessage = readln().toBoolean()
         }
+
     } else println("Неверное имя пользователя, невозможно добавить сообщение")
 
-    chat.printChat()
+    chat.printChat(name)
 }
