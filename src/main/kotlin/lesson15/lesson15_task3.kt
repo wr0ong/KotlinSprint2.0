@@ -12,14 +12,12 @@ open class Forum() {
     }
 
     fun giveAdminAbility(user: User) {
-        if (mListOfUsers.contains(user)){
+        if (mListOfUsers.contains(user)) {
             val admin: Admin = Admin(user.nameOfUser)
             mListOfAdmins.add(admin)
             println("${user.nameOfUser} стал администарором")
         } else println("Пользователь с именем ${user.nameOfUser} не зарегестрирован")
-
     }
-
 }
 
 abstract class UserAbility(val nameOfUser: String) {
@@ -30,7 +28,6 @@ abstract class UserAbility(val nameOfUser: String) {
     open fun write() {
         println("${nameOfUser} написал сообщение")
     }
-
 }
 
 abstract class AdminAbility(nameOfUser: String) : UserAbility(nameOfUser) {
@@ -56,12 +53,9 @@ fun main() {
 
     forum.mListOfUsers.first().write()
 
-
     forum.giveAdminAbility(forum.mListOfUsers[0])
     val checkUser: User = User("asdsda")
     forum.giveAdminAbility(checkUser)
 
     forum.mListOfAdmins[0].removeMessage()
-
-
 }
