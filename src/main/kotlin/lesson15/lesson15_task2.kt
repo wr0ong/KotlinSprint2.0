@@ -1,34 +1,34 @@
 package org.example.lesson15
 
 abstract class WeatherStationStats() {
-    val mListOfTemperature: MutableList<Int> = mutableListOf()
-    val mListOfAmount: MutableList<Double> = mutableListOf()
+    open val temperature: Int = 0
+    open val precipitation: Double = 0.0
 }
 
-open class Temperature() : WeatherStationStats() {
+class Temperature(override val temperature: Int) : WeatherStationStats() {
 }
 
-open class PrecipitationAmount() : WeatherStationStats() {
+class PrecipitationAmount(override val precipitation: Double) : WeatherStationStats() {
 }
 
-class WeatherServer() : WeatherStationStats() {
+class WeatherServer() {
     fun getInfo() {
+        println("Введите значение температуры или количества осадков")
         val result = readln()
         val digit = result.partition { it.isDigit() }
-        if (digit.second == "") {
-            mListOfTemperature.add(result.toInt())
+        if ((digit.second == "") || (digit.second == "-")) {
+            val temperature: Temperature = Temperature(result.toInt())
+            println("Температура: ${temperature.temperature}")
+        } else {
+            val precipitationAmount: PrecipitationAmount = PrecipitationAmount(result.toDouble())
+            println("Осадки: ${precipitationAmount.precipitation}")
         }
-        else {
-            result.toDouble()
-            mListOfAmount.add(result.toDouble())}
+
     }
 }
 
-fun main(){
+fun main() {
     val weatherInfo1 = WeatherServer()
     weatherInfo1.getInfo()
     weatherInfo1.getInfo()
-
-    weatherInfo1.mListOfAmount.forEach { println("Значение давления $it") }
-    weatherInfo1.mListOfTemperature.forEach { println("Значение температуры $it") }
 }
