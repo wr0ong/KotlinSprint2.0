@@ -11,63 +11,95 @@ class MusicShop(
 ) : Search {
     fun showAllAccessories() {
         println("Аксессуары для гитар:")
-        mListOfAccessoriesOfGuitar.forEach { println("Тип аксессуара - ${it.typeOfAccessories}, Бренд - ${it.brandOfAccessories}, Модель - ${it.modelOfAccessories}, Цена - ${it.price} руб.") }
+        mListOfAccessoriesOfGuitar.forEach {
+            println(
+                "Тип аксессуара - ${it.typeOfAccessories}, " +
+                        "Бренд - ${it.brandOfAccessories}, Модель - ${it.modelOfAccessories}, Цена - ${it.priceOfAccessories} руб."
+            )
+        }
         println("Аксессуары для пианино:")
-        mListOfAccessoriesOfPiano.forEach { println("Тип аксессуара - ${it.typeOfAccessories}, Бренд - ${it.brandOfAccessories}, Модель - ${it.modelOfAccessories}, Цена - ${it.price} руб.") }
+        mListOfAccessoriesOfPiano.forEach {
+            println(
+                "Тип аксессуара - ${it.typeOfAccessories}, " +
+                        "Бренд - ${it.brandOfAccessories}, Модель - ${it.modelOfAccessories}, Цена - ${it.priceOfAccessories} руб."
+            )
+        }
         println("Аксессуары для скрипок:")
-        mListOfAccessoriesOfViolin.forEach { println("Тип аксессуара - ${it.typeOfAccessories}, Бренд - ${it.brandOfAccessories}, Модель - ${it.modelOfAccessories}, Цена - ${it.price} руб.") }
+        mListOfAccessoriesOfViolin.forEach {
+            println(
+                "Тип аксессуара - ${it.typeOfAccessories}, " +
+                        "Бренд - ${it.brandOfAccessories}, Модель - ${it.modelOfAccessories}, Цена - ${it.priceOfAccessories} руб."
+            )
+        }
     }
 }
 
-open class Guitar(
+abstract class Instruments(
     val brand: String = "",
     val model: String = "",
     val price: Double = 0.0,
+) {
+
+}
+
+open class Guitar(
+    brand: String,
+    model: String,
+    price: Double,
     val mListOfAccessories: MutableList<AccessoriesOfGuitar> = mutableListOf(),
-) : Search {}
+) : Instruments(brand, model, price), Search {}
 
 open class Violin(
-    val brand: String = "",
-    val model: String = "",
-    val price: Double = 0.0,
+    brand: String,
+    model: String,
+    price: Double,
     val mListOfAccessories: MutableList<AccessoriesOfViolin> = mutableListOf(),
-) : Search {}
+) : Instruments(brand, model, price), Search {}
 
 open class Piano(
-    val brand: String = "",
-    val model: String = "",
-    val price: Double = 0.0,
+    brand: String,
+    model: String,
+    price: Double,
     val mListOfAccessories: MutableList<AccessoriesOfPiano> = mutableListOf()
-) : Search {}
+) : Instruments(brand, model, price), Search {}
 
 class AccessoriesOfGuitar(
+    brand: String = "Any",
+    model: String = "Any",
+    price: Double = 0.0,
     val typeOfAccessories: String = "",
     val brandOfAccessories: String = "",
     val modelOfAccessories: String = "",
     val priceOfAccessories: Double = 0.0,
-) : Guitar() {
+) : Guitar(brand, model, price) {
     init {
         mListOfAccessories.add(this)
     }
 }
 
 class AccessoriesOfViolin(
+    brand: String = "Any",
+    model: String = "Any",
+    price: Double = 0.0,
     val typeOfAccessories: String = "",
     val brandOfAccessories: String = "",
     val modelOfAccessories: String = "",
     val priceOfAccessories: Double = 0.0,
-) : Violin() {
+) : Violin(brand, model, price) {
     init {
         mListOfAccessories.add(this)
     }
 }
 
 class AccessoriesOfPiano(
+    brand: String = "Any",
+    model: String = "Any",
+    price: Double = 0.0,
     val typeOfAccessories: String = "",
     val brandOfAccessories: String = "",
     val modelOfAccessories: String = "",
     val priceOfAccessories: Double = 0.0,
-) : Piano() {
+) : Piano(brand, model, price) {
     init {
         mListOfAccessories.add(this)
     }
@@ -150,6 +182,5 @@ fun main() {
     yamahaShop.mListOfAccessoriesOfGuitar.add(accessoriesOfGuitar2)
 
     yamahaShop.searchAccessories()
-    guitar1.searchAccessories()
     yamahaShop.showAllAccessories()
 }
