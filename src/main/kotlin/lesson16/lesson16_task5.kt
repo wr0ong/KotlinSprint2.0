@@ -5,9 +5,9 @@ class Player(
     private var healthPoint: Int = 100,
     private var damage: Int = 40,
 ) {
-    private var statusOfPlayer: String = "жив"
+    private var isDead: Boolean = false
     fun heal() {
-        if (statusOfPlayer == "жив") {
+        if (!isDead) {
             healthPoint += 15
             println("$nameOfPlayer полечился, его хп составляет $healthPoint единиц!")
         } else println("Нельзя лечить мертвеца, $nameOfPlayer мертв!")
@@ -22,8 +22,8 @@ class Player(
         if (damage == 0) println("Враг повержен, игрок $nameOfPlayer победил!")
         else if (healthPoint <= 0) {
             this.damage = 0
-            statusOfPlayer = "погиб"
-            println("Игрок ${nameOfPlayer + " " + statusOfPlayer}!")
+            isDead = true
+            println("Игрок $nameOfPlayer погиб!")
         } else {
             println("$nameOfPlayer, вам нанесли урон $damage!, осталось $healthPoint единиц здоровья!")
         }
