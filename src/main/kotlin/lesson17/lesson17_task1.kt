@@ -5,20 +5,21 @@ class Victorina(
     answer: String,
 ) {
     var question = question
-        get() = "Сколько часов в неделе?"
+        get() = field
 
     var answer = answer
         get() = field
-        set(answer) {
-            field = "168"
+        set(value) {
+            field = value
         }
+
     init {
         this.answer = answer
     }
 }
 
 fun main() {
-    val victorina1: Victorina = Victorina("", "")
+    val victorina1: Victorina = Victorina("Cколько часов в неделе?", "168")
 
     println(victorina1.question)
     println(victorina1.answer)
