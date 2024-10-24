@@ -22,6 +22,7 @@ class Package(val number: Int, geolocation: String) {
 
 fun main() {
     val package1: Package = Package(1, START_OF_WAY)
+
     package1.printInfo()
     package1.changeGeolocation(START_OF_WAY)
     package1.printInfo()
