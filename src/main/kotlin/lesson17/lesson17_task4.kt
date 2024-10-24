@@ -1,7 +1,6 @@
 package org.example.lesson17
 
 class Package(val number: Int, geolocation: String) {
-    var checkGeolocation: String = START_OF_WAY
     var counterOfChangeGeolocation = 1
     var geolocation = geolocation
         get() = field
