@@ -23,5 +23,5 @@ fun main() {
 
     order1.orderInformation(1, "Сметана")
 
-    order1.orderInformation(2, listOf("Сметана", "Лук"))
+    order2.orderInformation(2, listOf("Сметана", "Лук"))
 }
