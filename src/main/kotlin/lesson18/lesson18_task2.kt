@@ -1,11 +1,12 @@
 package org.example.lesson18
 
 abstract class Dice() {
+    open val numberOfFaces: Int = 0
     open fun rollDice() {}
 }
 
 class FirstDice() : Dice() {
-    private val numberOfFaces: Int = 4
+    override val numberOfFaces: Int = 4
 
     override fun rollDice() {
         val rollResult = (1..numberOfFaces).random()
@@ -14,7 +15,7 @@ class FirstDice() : Dice() {
 }
 
 class SecondDice() : Dice() {
-    private val numberOfFaces: Int = 6
+    override val numberOfFaces: Int = 6
 
     override fun rollDice() {
         val rollResult = (1..numberOfFaces).random()
@@ -23,7 +24,7 @@ class SecondDice() : Dice() {
 }
 
 class ThirdDice() : Dice() {
-    private val numberOfFaces: Int = 8
+    override val numberOfFaces: Int = 8
 
     override fun rollDice() {
         val rollResult = (1..numberOfFaces).random()
