@@ -2,17 +2,15 @@ package org.example.lesson18
 
 abstract class Animals() {
     open fun eat() {}
-    open fun sleep() {}
+    open fun sleep() {
+        println("спит. Zzz")
+    }
 }
 
 class Fox(val name: String) : Animals() {
     private val food: String = "ягоды"
     override fun eat() {
         println("$name ест $food")
-    }
-
-    override fun sleep() {
-        println("$name спит Zzz")
     }
 }
 
@@ -21,20 +19,12 @@ class Dog(val name: String) : Animals() {
     override fun eat() {
         println("$name ест $food")
     }
-
-    override fun sleep() {
-        println("$name спит Zzz")
-    }
 }
 
 class Cat(val name: String) : Animals() {
     private val food: String = "рыбу"
     override fun eat() {
         println("$name ест $food")
-    }
-
-    override fun sleep() {
-        println("$name спит Zzz")
     }
 }
 
