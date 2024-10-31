@@ -25,23 +25,17 @@ enum class Category(val id: Int) {
     abstract fun printCategory(): String
 }
 
-class Product(val nameOfProduct: String, val id: Int) {
-    fun getCategory(id: Int): Category {
-        if (id == Category.CLOTHES.id) return Category.CLOTHES
-        else if (id == Category.OFFICE_SUPPLIES.id) return Category.OFFICE_SUPPLIES
-        else if (id == Category.DIFFERENT.id) return Category.DIFFERENT
-        else return Category.ERROR
-    }
+class Product(val nameOfProduct: String, val id: Int, val category: Category) {
 
     fun printInfo() {
-        println("Название - $nameOfProduct, id - $id, категория - ${this.getCategory(id).printCategory()}")
+        println("Название - $nameOfProduct, id - $id, категория - ${category.printCategory()}")
     }
 }
 
 fun main() {
-    val product1: Product = Product("Дубленка", 1)
-    val product2: Product = Product("Шариковая ручка Pilot", 2)
-    val product3: Product = Product("Аспирин", 3)
+    val product1: Product = Product("Дубленка", 1, Category.CLOTHES)
+    val product2: Product = Product("Шариковая ручка Pilot", 2, Category.OFFICE_SUPPLIES)
+    val product3: Product = Product("Аспирин", 3, Category.DIFFERENT)
 
     product1.printInfo()
     product2.printInfo()
