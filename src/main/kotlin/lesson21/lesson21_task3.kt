@@ -6,10 +6,10 @@ class PlayerNew(val name: String, var healthPoint: Int, val maxHealthPoint: Int 
     }
 }
 
-fun PlayerNew.isHealthy() {
+fun PlayerNew.isHealthy(): Boolean {
     val isHealthy: Boolean
     isHealthy = healthPoint == maxHealthPoint
-    println(isHealthy)
+    return isHealthy
 }
 
 fun main() {
