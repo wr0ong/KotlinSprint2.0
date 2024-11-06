@@ -2,11 +2,8 @@ package org.example.lesson21
 
 fun List<Int>.evenNumbersSum() {
     var sumOfEvens: Int = 0
-    for (i in 0 until this.size) {
-        if (this[i] % 2 == 0) {
-            sumOfEvens += this[i]
-        }
-    }
+    sumOfEvens = this.filter { it % 2 == 0 }
+        .sum()
     println(sumOfEvens)
 }
 
